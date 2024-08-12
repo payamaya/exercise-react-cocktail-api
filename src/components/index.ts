@@ -1,3 +1,6 @@
 export * from './App'
 export * from './Button'
+export * from './Input'
 export * from './Header'
+export * from './SearchResullts.tsx'
+export * from './Search.tsx'

@@ -9,8 +9,8 @@ export function Header(): ReactElement {
       </Link>
       <nav className='links'>
         <Link to='/'>Random Drink</Link>
-        <Link to={`/cocktail-info`}>Cocktail Info Page</Link>
-        <Link to='/search'>Search age</Link>
+        {/* <Link to={`/cocktail-info`}>Cocktail Info Page</Link> */}
+        <Link to='/search'>Search Drink</Link>
       </nav>
     </header>
   )

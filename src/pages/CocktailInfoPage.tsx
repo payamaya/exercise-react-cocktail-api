@@ -20,6 +20,7 @@ export function CocktailInfoPage(): ReactElement {
   const [drink, setDrink] = useState<Drink | null>(null) // State to hold the drink data
   const [error, setError] = useState<string | null>(null) // State to hold any errors
   const navigate = useNavigate()
+
   const lookUpApiUrl = `https://www.thecocktaildb.com/api/json/v1/1/lookup.php?i=${id}`
 
   useEffect(() => {

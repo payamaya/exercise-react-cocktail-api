@@ -1,0 +1,23 @@
+.search-result-container {
+  display: flex;
+  justify-content: center;
+  align-content: center;
+  align-items: center;
+  /* width: 100%; */
+  flex-direction: row;
+  flex-wrap: wrap;
+  border: 2px solid red;
+}
+.search-result-wrapper {
+  /* width: 300px; */
+  display: flex;
+  flex-wrap: wrap;
+  /* border: 2px solid green; */
+  justify-content: center;
+}
+.search-result-card {
+  width: 300px;
+  border: 2px solid rgb(128, 94, 0);
+  margin: 1rem;
+  height: auto;
+}
