@@ -1,0 +1,41 @@
+.header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  background-color: var(--iconColor);
+  color: var(--textColor);
+  padding: 0.5rem 2rem;
+  width: 100%;
+
+  position: fixed;
+  top: 0;
+}
+.logo {
+  width: 50px;
+}
+.header .links {
+  display: flex;
+  gap: 2rem;
+}
+
+.header .links a {
+  color: var(--textColor);
+  /* font-size: 1.2rem; */
+}
+.header .links a::after {
+  transform: scaleX(1);
+  transform-origin: bottom left;
+  content: '';
+  position: absolute;
+  left: 0;
+  bottom: -2px;
+  width: 100%;
+  height: 2px;
+  background-color: var(--bgColor);
+  transform: scale(0);
+  transition: 0.2s all ease-in;
+}
+.header .links a:hover::after {
+  transform: scaleX(1);
+  transform-origin: bottom left;
+}

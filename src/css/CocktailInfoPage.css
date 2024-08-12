@@ -1,0 +1,27 @@
+.info-card-container {
+  display: flex;
+  flex-direction: row-reverse;
+  padding: 2rem;
+  border: var(--border);
+  border-radius: var(--borderRadius);
+  margin: 1rem;
+}
+.drink-details {
+  display: flex;
+  flex-direction: row-reverse;
+}
+.drink-info {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-around;
+  padding: 1.4rem;
+  align-items: center;
+}
+.drink-details-img {
+  width: 300px;
+  height: 300px;
+}
+.back {
+  margin-block: 1rem;
+  width: 50%;
+}

@@ -1,0 +1,30 @@
+.drink-container {
+  display: flex;
+  flex-direction: column;
+  width: 300px;
+  justify-content: center;
+  align-items: center;
+  border: var(--border);
+  border-radius: var(--borderRadius);
+  padding: 0.4rem;
+  margin: 1rem;
+}
+.random-img {
+  width: 200px;
+  height: auto;
+}
+.random-drink_card {
+  display: flex;
+  align-content: center;
+  justify-content: center;
+  flex-direction: row;
+  flex-wrap: wrap;
+}
+.random-drink_card {
+  margin-block: 1rem;
+}
+
+.btn-submit {
+  margin-block: 1rem;
+  font-size: 1rem;
+}
