@@ -2,6 +2,7 @@ import { ReactElement, useEffect, useState } from 'react'
 import { useNavigate, useSearchParams } from 'react-router-dom'
 import { Button } from '../components/Button'
 import { PaginationList } from './PaginationListPage'
+import { Search } from '../components'
 
 // Define the TypeScript interfaces based on the API response structure
 interface Drink {
@@ -23,8 +24,11 @@ export function SearchPage(): ReactElement {
   const query = searchParams.get('query') || ''
 
   const apiUrl = `https://www.thecocktaildb.com/api/json/v1/1/search.php?s=`
-
   useEffect(() => {
+    if (!query) {
+      setDrinks([])
+      return
+    }
     const fetchSearchDrinks = async () => {
       try {
         const response = await fetch(`${apiUrl}${query}`)
@@ -51,6 +55,7 @@ export function SearchPage(): ReactElement {
 
   return (
     <>
+      <Search />
       {/* <h1 className='search-title'>Search Results</h1> */}
       <Button
         onClick={() => navigate(-1)}
@@ -64,7 +69,7 @@ export function SearchPage(): ReactElement {
         {drinks.length > 0 ? (
           <PaginationList drinks={drinks} />
         ) : (
-          <p>No Results found for "{query}"</p>
+          <p>Please enter a search query to find a cocktail.</p>
         )}
       </section>
     </>

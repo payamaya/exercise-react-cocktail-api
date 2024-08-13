@@ -68,7 +68,7 @@ export function LandingPage(): ReactElement {
           </Button>
         </section>
       ))}
-      <Button type='button' className='' onClick={fetchDrinks}>
+      <Button type='button' className='random-btn' onClick={fetchDrinks}>
         Random Drink
       </Button>
     </>

@@ -4,7 +4,7 @@
   margin-block: 1rem;
   position: fixed;
   top: 12vh;
-  left: 4vw;
+  right: 2vw;
 }
 .search-input {
   border-radius: var(--borderRadius);

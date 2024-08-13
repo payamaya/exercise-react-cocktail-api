@@ -98,12 +98,11 @@ export function CocktailInfoPage(): ReactElement {
             <h2>{drink.strDrink}</h2>
             <section className='info-details-section'>
               <div className='span-info'>
-                <label>Instrunctions:</label>{' '}
+                <label>Instrunctions:</label>
                 <span>{drink.strInstructions}</span>
                 <div className='span-info'>
-                  <label>
-                    Tags: <span>{drink.strTags}</span>
-                  </label>
+                  <label>Tags:</label>
+                  <span>{drink.strTags}</span>
                 </div>
                 <div className='span-info'>
                   <label>

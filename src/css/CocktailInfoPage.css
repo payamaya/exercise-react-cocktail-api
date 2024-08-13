@@ -81,7 +81,14 @@
   justify-content: space-around;
   margin-bottom: 1rem;
 }
-
+span {
+  display: flex;
+  align-items: center;
+  flex-wrap: wrap;
+  word-break: normal;
+  height: auto;
+  width: 40ch;
+}
 @media screen and (max-width: 768px) {
   .info-card-container {
     padding: 0rem;
