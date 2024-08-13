@@ -1,0 +1,27 @@
+.pagination {
+  display: flex;
+  list-style: none;
+  padding: 0.4rem;
+}
+
+.pagination li {
+  margin: 0 5px;
+}
+
+.pagination li button {
+  padding: 0.3rem 0.6rem;
+  border: 2px solid var(--borderColor);
+  background-color: var(--iconColor);
+  border-radius: var(--borderRadius);
+  cursor: pointer;
+}
+.pagination li button:hover {
+  padding: 0.3rem 0.6rem;
+  border: 2px solid var(--borderColor);
+  background-color: var(--hoverColor);
+}
+
+.pagination li.active button {
+  background-color: var(--primaryColor);
+  color: var(--textColor);
+}

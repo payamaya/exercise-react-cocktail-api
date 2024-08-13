@@ -1,0 +1,32 @@
+.search-result-container {
+  display: flex;
+  justify-content: center;
+  align-content: center;
+  align-items: center;
+  flex-direction: column;
+  flex-wrap: wrap;
+}
+.search-result-wrapper {
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  justify-content: center;
+  align-content: center;
+  padding: 0;
+  margin: 0;
+}
+.search-result-back {
+  border-radius: var(--borderRadius);
+  border: 2px solid var(--borderColor);
+  margin-bottom: 1rem;
+  padding: 0.4rem;
+}
+.search-result-card {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 300px;
+  border: 2px solid rgb(128, 94, 0);
+  margin: 1rem;
+  border-radius: var(--borderRadius);
+}

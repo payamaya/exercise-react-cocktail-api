@@ -1,7 +1,7 @@
 import { ReactElement, useEffect, useState } from 'react'
 import { Button } from '../components'
 import { useNavigate } from 'react-router-dom'
-import { Search } from '../components'
+// import { Search } from '../components'
 
 // Define the TypeScript interfaces based on the API response structure
 interface Drink {
@@ -49,7 +49,7 @@ export function LandingPage(): ReactElement {
 
   return (
     <>
-      <Search />
+      {/* <Search /> */}
       <h1>Cocktail List</h1>
       {error && <p>Error: {error}</p>} {/* Display error if any */}
       {drinks.map((drink) => (

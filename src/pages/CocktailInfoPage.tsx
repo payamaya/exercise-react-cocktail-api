@@ -51,8 +51,8 @@ export function CocktailInfoPage(): ReactElement {
         <section className='drink-details'>
           <div className='drink-info'>
             <h2>{drink.strDrink}</h2>
-            <p>{drink.strInstructions}</p>
-            <Button className='back' onClick={() => navigate('/')}>
+            <p className='drink-info-para'>{drink.strInstructions}</p>
+            <Button className='back' onClick={() => navigate(-1)}>
               Back
             </Button>
           </div>

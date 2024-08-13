@@ -15,22 +15,22 @@ export function Search(): ReactElement {
       setSearchParams({ query: searchValue }) // Update the URL with the search query
       navigate(`/search?query=${searchValue}`) // Navigate to the search results page
     }
+    setSearchValue('')
   }
 
   return (
-    <form onSubmit={handleSubmit}>
-      <div>
-        <Input
-          label='search'
-          placeholder='search...'
-          type='search'
-          onChange={(e) => setSearchValue(e.target.value)}
-          value={searchValue}
-        />
-        <Button className='' type='submit'>
-          Search
-        </Button>
-      </div>
+    <form onSubmit={handleSubmit} className='form'>
+      <Input
+        className='search-input'
+        label='search'
+        placeholder='search...'
+        type='search'
+        onChange={(e) => setSearchValue(e.target.value)}
+        value={searchValue}
+      />
+      <Button className='search-btn' type='submit'>
+        Search
+      </Button>
     </form>
   )
 }

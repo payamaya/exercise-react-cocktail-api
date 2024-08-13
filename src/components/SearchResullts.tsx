@@ -1,5 +1,7 @@
 import { ReactElement, useEffect, useState } from 'react'
 import { useNavigate, useSearchParams } from 'react-router-dom'
+import { Button } from './Button'
+import { PaginationList } from './PaginationList'
 
 // Define the TypeScript interfaces based on the API response structure
 interface Drink {
@@ -7,11 +9,10 @@ interface Drink {
   strDrink: string
   strInstructions: string
   strDrinkThumb: string
-  // Define other properties if needed
 }
 
 interface ApiResponse {
-  drinks: Drink[]
+  drinks: Drink[] | null
 }
 
 export function SearchResullts(): ReactElement {
@@ -30,7 +31,11 @@ export function SearchResullts(): ReactElement {
         throw new Error('Network response was not ok')
       }
       const data: ApiResponse = await response.json()
-      setDrinks(data.drinks) // Set the drinks data
+      if (data.drinks) {
+        setDrinks(data.drinks)
+      } else {
+        setDrinks([]) // Set the drinks data
+      }
     } catch (error: unknown) {
       if (error instanceof Error) {
         setError(error.message)
@@ -38,52 +43,31 @@ export function SearchResullts(): ReactElement {
         setError('An unknown error occurred')
       }
     }
-  }
-  const apiUrlSearch = 'https://www.thecocktaildb.com/api/json/v1/1/random.php'
-
-  const fetchDrinks = async () => {
-    try {
-      const response = await fetch(apiUrlSearch)
-      if (!response.ok) {
-        throw new Error('Network response was not ok')
-      }
-      const data: ApiResponse = await response.json()
-      setDrinks(data.drinks) // Set the drinks data
-    } catch (error: unknown) {
-      if (error instanceof Error) {
-        setError(error.message)
-      } else {
-        setError('An unknown error occurred')
-      }
-    }
-  }
-
-  useEffect(() => {
-    fetchDrinks() // Fetch the data when the component mounts
-  }, [])
-
-  const handleSeeMore = (idDrink: string) => {
-    navigate(`/cocktail-info/${idDrink}`)
   }
   useEffect(() => {
     fetchSearchDrinks() // Fetch the data when the component mounts
   }, [query])
 
   return (
-    <section className='search-result-container'>
-      <h1>Search Results</h1>
-      {error && <p>Error: {error}</p>}
-      <ul className='search-result-wrapper'>
-        {drinks.map((drink) => (
-          <li
-            className='search-result-card'
-            key={drink.idDrink}
-            onClick={() => handleSeeMore(drink.idDrink)}
-          >
-            <h2>{drink.strDrink}</h2>
-          </li>
-        ))}
-      </ul>
-    </section>
+    <>
+      {/* <h1 className='search-title'>Search Results</h1> */}
+      <Button
+        onClick={() => navigate(-1)}
+        type='button'
+        className='search-result-back'
+      >
+        Back
+      </Button>
+      <section className='search-result-container'>
+        {error && <p>Error: {error}</p>}
+        <ul className='search-result-wrapper'>
+          {drinks.length > 0 ? (
+            <PaginationList drinks={drinks} />
+          ) : (
+            <p>No Results found for "{query}"</p>
+          )}
+        </ul>
+      </section>
+    </>
   )
 }

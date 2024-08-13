@@ -15,7 +15,7 @@ interface IInputProps {
 export function Input(props: IInputProps): ReactElement {
   return (
     <input
-      className='input'
+      className={props.className}
       id={props.label}
       onChange={props.onChange}
       type={props.type}
