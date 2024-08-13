@@ -20,6 +20,7 @@ export function LandingPage(): ReactElement {
   const [drinks, setDrinks] = useState<Drink[]>([]) // State to hold the drinks data
   const [error, setError] = useState<string | null>(null) // State to hold any errors
   const navigate = useNavigate()
+
   const apiUrl = 'https://www.thecocktaildb.com/api/json/v1/1/random.php'
 
   const fetchDrinks = async () => {
@@ -50,7 +51,9 @@ export function LandingPage(): ReactElement {
   return (
     <>
       {/* <Search /> */}
-      <h1>Cocktail List</h1>
+      <section>
+        <h1>Welcome to TheCocktailDB</h1>
+      </section>
       {error && <p>Error: {error}</p>} {/* Display error if any */}
       {drinks.map((drink) => (
         <section className='drink-container' key={drink.idDrink}>

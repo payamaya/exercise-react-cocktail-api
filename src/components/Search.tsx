@@ -13,7 +13,7 @@ export function Search(): ReactElement {
     event.preventDefault() // Prevent the default form submission
     if (searchValue.trim()) {
       setSearchParams({ query: searchValue }) // Update the URL with the search query
-      navigate(`/search?query=${searchValue}`) // Navigate to the search results page
+      navigate(`/search-page?query=${searchValue}`) // Navigate to the search results page
     }
     setSearchValue('')
   }

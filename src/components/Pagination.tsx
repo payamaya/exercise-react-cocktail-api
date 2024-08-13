@@ -1,10 +1,5 @@
 import { ReactElement } from 'react'
-
-interface PaginationProps {
-  currentPage: number
-  totalPages: number
-  onPageChange: (pageNumber: number) => void
-}
+import { PaginationProps } from '../interfaces'
 
 export function Pagination({
   currentPage,

@@ -1,5 +1,5 @@
 import { useState } from 'react'
-import { Pagination } from './Pagination'
+import { Pagination } from '../components/Pagination'
 import { useNavigate } from 'react-router-dom'
 
 // Define the TypeScript interface for the drink data

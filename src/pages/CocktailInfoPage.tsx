@@ -1,15 +1,20 @@
 import { ReactElement, useEffect, useState } from 'react'
 import { useNavigate, useParams } from 'react-router-dom'
 import { Button } from '../components'
+import { Drink } from '../interfaces'
 
 // Define the TypeScript interface for the drink data
-interface Drink {
-  idDrink: string
-  strDrink: string
-  strInstructions: string
-  strDrinkThumb: string
-  // Add other properties if needed
-}
+// interface Drink {
+//   idDrink: string
+//   strDrink: string
+//   strInstructions: string
+//   strDrinkThumb: string
+//   strGlass: string
+//   strCategory: string
+//   strTags: null
+//   strIngredient1: string
+//   // Add other properties if needed
+// }
 
 interface ApiResponse {
   drinks: Drink[]
@@ -42,8 +47,48 @@ export function CocktailInfoPage(): ReactElement {
     }
 
     fetchDrinkById() // Fetch the drink details when the component mounts
-  }, [id]) // Dependency array ensures this runs when the id changes
+  }, [id, lookUpApiUrl]) // Dependency array ensures this runs when the id changes
 
+  const renderIngredients = () => {
+    if (!drink) return null
+
+    const ingredients: ReactElement[] = []
+
+    // Get all keys from the drink object
+    const drinkKeys = Object.keys(drink)
+
+    // Filter and sort keys for ingredients and measures
+    const ingredientKeys = drinkKeys
+      .filter(
+        (key) => key.startsWith('strIngredient') && drink[key as keyof Drink]
+      )
+      .sort(
+        (a, b) =>
+          parseInt(a.replace('strIngredient', '')) -
+          parseInt(b.replace('strIngredient', ''))
+      )
+
+    ingredientKeys.forEach((key) => {
+      const index = key.replace('strIngredient', '') // Extract the index number
+      const ingredient = drink[key as keyof Drink]
+      const measure = drink[`strMeasure${index}` as keyof Drink]
+
+      if (ingredient) {
+        const imageUrl = `https://www.thecocktaildb.com/images/ingredients/${encodeURIComponent(
+          ingredient
+        )}-Small.png`
+        ingredients.push(
+          <li className='info-list' key={key}>
+            <img src={imageUrl} alt={ingredient} className='ingredient-image' />
+            {measure ? `${measure} ` : ''}
+            {ingredient}
+          </li>
+        )
+      }
+    })
+
+    return ingredients
+  }
   return (
     <section className='info-card-container'>
       {error && <p>Error: {error}</p>} {/* Display error if any */}
@@ -51,7 +96,30 @@ export function CocktailInfoPage(): ReactElement {
         <section className='drink-details'>
           <div className='drink-info'>
             <h2>{drink.strDrink}</h2>
-            <p className='drink-info-para'>{drink.strInstructions}</p>
+            <section className='info-details-section'>
+              <div className='span-info'>
+                <label>Instrunctions:</label>{' '}
+                <span>{drink.strInstructions}</span>
+                <div className='span-info'>
+                  <label>
+                    Tags: <span>{drink.strTags}</span>
+                  </label>
+                </div>
+                <div className='span-info'>
+                  <label>
+                    Category:<span> {drink.strCategory}</span>
+                  </label>
+                </div>
+                {/* <img src={drink.strDrinkThumb} alt={drink.strDrink} /> */}
+              </div>
+            </section>
+
+            <div className='measure'>
+              <span>Ingredients and Measurements</span>
+              <ul className='ingredient-item'>{renderIngredients()}</ul>
+            </div>
+            <span>Glass</span>
+            <p>{drink.strGlass}</p>
             <Button className='back' onClick={() => navigate(-1)}>
               Back
             </Button>

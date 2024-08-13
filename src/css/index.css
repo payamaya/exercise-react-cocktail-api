@@ -8,7 +8,7 @@
 @import url('./Pagination.css');
 @import url('./PaginationList.css');
 @import url('./Search.css');
-@import url('./SearchResult.css');
+@import url('./SearchPage.css');
 
 :root {
   font-family: Poppins, system-ui, Avenir, Helvetica, Arial, sans-serif;
@@ -61,6 +61,7 @@ body {
   /* padding: 2rem; */
   text-align: center;
   background-color: var(--bgColor);
+  justify-content: center;
 }
 li {
   list-style: none;
