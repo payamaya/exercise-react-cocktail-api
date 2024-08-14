@@ -14,10 +14,11 @@
 
 .logo {
   height: 50px;
+  max-width: 200px;
 }
 
 .header .links {
-  /* display: flex; */
+  display: flex;
   gap: 2rem;
 }
 
@@ -25,7 +26,7 @@
   color: var(--textColor);
   text-decoration: none;
   position: relative;
-  font-size: 1.2rem;
+  font-size: 1rem;
 }
 
 .header .links a::after {
@@ -59,28 +60,37 @@
   width: 40px;
   display: block;
   height: 3px;
-  background-color: #fff;
+  background-color: var(--textColor);
   border-radius: 2px;
   transition: all 0.3s ease-in-out;
 }
 
 @media (max-width: 768px) {
   .links {
-    display: none;
-    flex-direction: column;
-    background-color: var(--bgColor);
-    height: calc(100vh - 10vh);
+    visibility: hidden; /* Hidden by default but still takes space */
+    opacity: 0;
+    transform: translateX(-100px); /* Start position before animation */
+    transition: opacity 0.5s ease-in-out, transform 0.5s ease-in-out,
+      visibility 0.5s ease-in-out;
     position: absolute;
     top: 60px; /* Adjust based on your header height */
     left: 0;
     width: 100%;
+    height: calc(100vh - 10vh);
+    background-color: var(--bgColor);
     padding: 1rem 0;
     text-align: center;
+    flex-direction: column;
+    display: flex;
+    justify-content: space-evenly;
   }
 
   .links.open {
+    visibility: visible; /* Make the element visible */
+    opacity: 1;
+    transform: translateY(0);
     display: flex;
-    justify-content: space-evenly;
+    justify-content: space-evenly; /* Move to final position */
   }
 
   .hamburger {

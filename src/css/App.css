@@ -1,9 +1,18 @@
 .main {
   display: flex;
   align-items: center;
-  /* height: calc(100vh - 20vh); */
   flex-direction: column;
   width: 100vw;
   justify-content: center;
   margin-top: 25vh;
+}
+@media screen and (max-width: 425px) {
+  .main {
+    margin-top: 30vh;
+  }
+}
+@media screen and (max-width: 330px) {
+  .main {
+    margin-top: 40vh;
+  }
 }

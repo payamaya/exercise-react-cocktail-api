@@ -1,27 +1,13 @@
 .info-card-container {
   display: flex;
   flex-direction: row-reverse;
-  padding: 1rem;
+  /* padding: 1rem; */
   border: var(--border);
   border-radius: var(--borderRadius);
   margin: 2rem 1rem;
-  /* width: 600px; */
   justify-content: center;
 }
 
-.drink-details {
-  display: flex;
-  flex-direction: column-reverse;
-  align-items: center;
-  flex-wrap: wrap;
-}
-.drink-info {
-  display: flex;
-  flex-direction: column;
-  justify-content: space-around;
-  padding: 0.2rem;
-  align-items: center;
-}
 .drink-details-img {
   width: 100%;
   height: 300px;
@@ -33,7 +19,6 @@
 }
 .back {
   margin-block: 1rem;
-  /* width: 50%; */
 }
 .ingredient-item {
   display: flex;
@@ -51,60 +36,90 @@
   display: flex;
   align-items: center;
   flex-wrap: wrap;
-  justify-content: center;
+  justify-content: space-around;
   margin-block: 1rem;
   border: 2px solid var(--iconColor);
-  max-width: 500px;
+  width: 100%;
 }
 .measure span {
   margin-top: 1.5rem;
 }
-.info-details-section {
+
+.drink-details {
   display: flex;
-  display: flex;
-  flex-direction: row;
-  flex-wrap: wrap;
+  justify-content: center;
+  /* padding: 1rem; */
+  flex-direction: column-reverse;
 }
-.span-info {
+
+.drink-info {
+  max-width: 600px;
+  width: 100%;
+}
+.info-figure {
   display: flex;
   flex-direction: column;
-  text-align: justify;
-  padding: 0.8rem;
-  word-break: break-all;
-  margin-block: 1rem;
-  border-radius: var(--borderRadius);
+  font-size: 1.5rem;
+}
+.figcaption {
+  margin-top: 1rem;
+  color: var(--textColor);
+}
+
+.info-details-section {
+  margin-top: 1rem;
+}
+
+.info-table {
+  width: 100%;
+  border-collapse: collapse;
   border: 2px solid var(--iconColor);
-  max-width: 500px;
 }
-.span-info label {
-  display: flex;
-  justify-content: space-around;
-  margin-bottom: 1rem;
+
+.info-table th,
+.info-table td {
+  padding: 0.75rem;
+  text-align: left;
+  border-bottom: 1px solid var(--iconColor);
 }
-span {
-  display: flex;
-  align-items: center;
-  flex-wrap: wrap;
-  word-break: normal;
-  height: auto;
-  width: 40ch;
+
+.info-table th {
+  border: 2px solid var(--iconColor);
+  color: var(--textColor);
+  width: 30%;
 }
+
+.info-table td {
+  background-color: var(--bgColor);
+  color: var(--textColor);
+}
+
+@media (max-width: 768px) {
+  .drink-info {
+    width: 100%;
+  }
+
+  .info-table:is(th, td) {
+    padding: 0.5rem;
+  }
+}
+
 @media screen and (max-width: 768px) {
   .info-card-container {
     padding: 0rem;
     margin: 1rem;
     display: flex;
     flex-direction: column;
-    max-width: 100%;
+    width: 100%;
   }
   .drink-details-img {
-    width: 100%;
     max-height: 280px;
   }
   .drink-details {
     display: flex;
     flex-direction: column-reverse;
     align-items: center;
+    align-content: center;
   }
   .drink-info-para {
     max-width: 300px;

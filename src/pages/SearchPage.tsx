@@ -1,6 +1,6 @@
 import { ReactElement, useEffect, useState } from 'react'
-import { useNavigate, useSearchParams } from 'react-router-dom'
-import { Button } from '../components/Button'
+import { useSearchParams } from 'react-router-dom'
+// import { Button } from '../components/Button'
 import { PaginationList } from './PaginationListPage'
 import { Search } from '../components'
 
@@ -20,7 +20,7 @@ export function SearchPage(): ReactElement {
   const [drinks, setDrinks] = useState<Drink[]>([])
   const [error, setError] = useState<string | null>(null)
   const [searchParams] = useSearchParams()
-  const navigate = useNavigate()
+  // const navigate = useNavigate()
   const query = searchParams.get('query') || ''
 
   const apiUrl = `https://www.thecocktaildb.com/api/json/v1/1/search.php?s=`
@@ -56,22 +56,14 @@ export function SearchPage(): ReactElement {
   return (
     <>
       <Search />
-      {/* <h1 className='search-title'>Search Results</h1> */}
-      <Button
-        onClick={() => navigate(-1)}
-        type='button'
-        className='search-result-back'
-      >
-        Back
-      </Button>
-      <section className='search-result-container'>
-        {error && <p>Error: {error}</p>}
-        {drinks.length > 0 ? (
-          <PaginationList drinks={drinks} />
-        ) : (
-          <p>Please enter a search query to find a cocktail.</p>
-        )}
-      </section>
+      {error && <p>Error: {error}</p>}
+      {drinks.length > 0 ? (
+        <PaginationList drinks={drinks} />
+      ) : (
+        <p className='search-para'>
+          Please enter a search query to find a cocktail.
+        </p>
+      )}
     </>
   )
 }

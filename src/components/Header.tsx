@@ -27,7 +27,7 @@ export function Header(): ReactElement {
         >
           Random Drink
         </Link>
-        {/* <Link to={`/cocktail-info`}>Cocktail Info Page</Link> */}
+
         <Link
           onClick={(e) => {
             e.preventDefault()

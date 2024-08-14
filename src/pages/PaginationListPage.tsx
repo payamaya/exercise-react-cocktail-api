@@ -39,25 +39,26 @@ export function PaginationList({ drinks }: Props) {
     navigate(`/cocktail-info/${idDrink}`)
   }
   return (
-    <section className='search-result-container'>
-      <h1>Cocktail List</h1>
-      <ul className='search-result-wrapper'>
-        {currentItems.map((drink) => (
-          <li className='search-result-card' key={drink.idDrink}>
-            <h2
-              className='search-header'
+    <>
+      <section className='search-result-container'>
+        <h1 className='pagination-list-header'>Cocktail List</h1>
+        <ul className='search-result-wrapper'>
+          {currentItems.map((drink) => (
+            <li
+              className='search-result-card'
+              key={drink.idDrink}
               onClick={() => handleSeeMore(drink.idDrink)}
             >
               {drink.strDrink}
-            </h2>
-          </li>
-        ))}
-      </ul>
+            </li>
+          ))}
+        </ul>
+      </section>
       <Pagination
         currentPage={currentPage}
         totalPages={totalPages}
         onPageChange={handlePageChange}
       />
-    </section>
+    </>
   )
 }

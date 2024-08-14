@@ -5,7 +5,6 @@ export function App(): ReactElement {
   return (
     <section className='main'>
       <Header />
-
       <Outlet />
     </section>
   )

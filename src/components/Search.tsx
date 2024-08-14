@@ -20,17 +20,26 @@ export function Search(): ReactElement {
 
   return (
     <form onSubmit={handleSubmit} className='form'>
-      <Input
-        className='search-input'
-        label='search'
-        placeholder='search...'
-        type='search'
-        onChange={(e) => setSearchValue(e.target.value)}
-        value={searchValue}
-      />
-      <Button className='search-btn' type='submit'>
-        Search
+      <Button
+        onClick={() => navigate(-1)}
+        type='button'
+        className='search-result-back'
+      >
+        Back
       </Button>
+      <section>
+        <Input
+          className='search-input'
+          label='search'
+          placeholder='search...'
+          type='search'
+          onChange={(e) => setSearchValue(e.target.value)}
+          value={searchValue}
+        />
+        <Button className='search-btn' type='submit'>
+          Search
+        </Button>
+      </section>
     </form>
   )
 }

@@ -24,6 +24,7 @@ export function CocktailInfoPage(): ReactElement {
   const { id } = useParams<{ id: string }>() // Get the idDrink from the URL params
   const [drink, setDrink] = useState<Drink | null>(null) // State to hold the drink data
   const [error, setError] = useState<string | null>(null) // State to hold any errors
+
   const navigate = useNavigate()
 
   const lookUpApiUrl = `https://www.thecocktaildb.com/api/json/v1/1/lookup.php?i=${id}`
@@ -95,22 +96,26 @@ export function CocktailInfoPage(): ReactElement {
       {drink ? (
         <section className='drink-details'>
           <div className='drink-info'>
-            <h2>{drink.strDrink}</h2>
             <section className='info-details-section'>
-              <div className='span-info'>
-                <label>Instrunctions:</label>
-                <span>{drink.strInstructions}</span>
-                <div className='span-info'>
-                  <label>Tags:</label>
-                  <span>{drink.strTags}</span>
-                </div>
-                <div className='span-info'>
-                  <label>
-                    Category:<span> {drink.strCategory}</span>
-                  </label>
-                </div>
-                {/* <img src={drink.strDrinkThumb} alt={drink.strDrink} /> */}
-              </div>
+              <table className='info-table'>
+                <tbody>
+                  <tr>
+                    <th>Instructions:</th>
+                    <td>{drink.strInstructions}</td>
+                  </tr>
+                  {drink.strTags && (
+                    <tr>
+                      <th>Tags:</th>
+                      <td>{drink.strTags}</td>
+                    </tr>
+                  )}
+                  <tr>
+                    <th>Category:</th>
+                    <td>{drink.strCategory}</td>
+                  </tr>
+                </tbody>
+              </table>
+              {/* <img src={drink.strDrinkThumb} alt={drink.strDrink} /> */}
             </section>
 
             <div className='measure'>
@@ -119,15 +124,18 @@ export function CocktailInfoPage(): ReactElement {
             </div>
             <span>Glass</span>
             <p>{drink.strGlass}</p>
-            <Button className='back' onClick={() => navigate(-1)}>
+            <Button title='hello' className='back' onClick={() => navigate(-1)}>
               Back
             </Button>
           </div>
-          <img
-            className='drink-details-img'
-            src={drink.strDrinkThumb}
-            alt={drink.strDrink}
-          />
+          <figure className='info-figure'>
+            <img
+              className='drink-details-img'
+              src={drink.strDrinkThumb}
+              alt={drink.strDrink}
+            />
+            <figcaption className='figcaption'>{drink.strDrink}</figcaption>
+          </figure>
         </section>
       ) : (
         <p>Loading...</p> // Loading state while data is being fetched

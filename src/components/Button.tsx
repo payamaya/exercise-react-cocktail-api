@@ -1,10 +1,15 @@
-import { MouseEventHandler, ReactElement, ReactNode } from 'react'
+import {
+  ButtonHTMLAttributes,
+  // MouseEventHandler,
+  ReactElement,
+  ReactNode,
+} from 'react'
 
-interface IButtonProps {
-  className: string
-  onClick?: MouseEventHandler<HTMLButtonElement>
+interface IButtonProps extends ButtonHTMLAttributes<HTMLButtonElement> {
+  // className: string
+  // onClick?: MouseEventHandler<HTMLButtonElement>
   children: ReactNode
-  type?: 'submit' | 'button'
+  // type?: 'submit' | 'button'
 }
 
 export function Button({
