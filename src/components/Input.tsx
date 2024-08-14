@@ -1,26 +1,21 @@
-import { ChangeEventHandler, ReactElement } from 'react'
-
-interface IInputProps {
-  label?: string
-  placeholder?: string
-  type: 'text' | 'search'
-  onChange: ChangeEventHandler<HTMLInputElement | HTMLTextAreaElement>
-  value?: string
-  name?: string
-  id?: string
-  checked?: boolean
-  className?: string
+import { ReactElement } from 'react'
+import { IInput } from '../interfaces'
+interface IInputProps extends IInput {
+  className: string
 }
-
-export function Input(props: IInputProps): ReactElement {
+export function Input({
+  label,
+  className,
+  ...input
+}: IInputProps): ReactElement {
   return (
     <input
-      className={props.className}
-      id={props.label}
-      onChange={props.onChange}
-      type={props.type}
-      value={props.value}
-      checked={props.checked}
+      className={`input ${className}`}
+      id={label}
+      onChange={input.onChange}
+      type={input.type}
+      value={input.value}
+      checked={input.checked}
     />
   )
 }

@@ -27,7 +27,7 @@ export function Search(): ReactElement {
       >
         Back
       </Button>
-      <section>
+      <section className='search-input-wrapper'>
         <Input
           className='search-input'
           label='search'

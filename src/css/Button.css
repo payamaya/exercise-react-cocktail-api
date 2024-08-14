@@ -12,6 +12,7 @@
 .btn:hover {
   background-color: var(--hoverColor);
   border: 1px solid var(--borderColor);
+  box-shadow: var(--boxShadow);
 }
 .btn:focus,
 .btn:focus-visible {

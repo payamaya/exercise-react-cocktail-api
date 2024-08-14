@@ -2,12 +2,12 @@
   display: flex;
   justify-content: space-around;
   margin-block: 1rem;
-  position: fixed;
-  top: 12vh;
-  /* right: 2vw; */
-  width: 100%;
-  margin-bottom: 1rem;
+  /* position: fixed; */
+  /* top: 12vh; */
+  min-width: 100%;
+  /* margin-bottom: 1rem; */
   flex-wrap: wrap;
+  /* background-color: red; */
 }
 
 .search-btn {
@@ -42,11 +42,18 @@
   height: 60vh;
 }
 @media screen and (max-width: 345px) {
+  .form {
+    /* background-color: red; */
+    width: max-content;
+  }
   .search-result-back {
     order: 2;
-    margin-top: 1rem;
+    width: 92%;
+    margin-block: 0.5rem;
   }
-  /* .search-input {
-    width: 33%;
-  } */
+  .search-input-wrapper {
+    display: flex;
+    width: 100%;
+    justify-content: space-around;
+  }
 }

@@ -1,11 +1,11 @@
 import { ReactElement } from 'react'
-import { PaginationProps } from '../interfaces'
+import { IPagination } from '../interfaces'
 
 export function Pagination({
   currentPage,
   totalPages,
   onPageChange,
-}: PaginationProps): ReactElement {
+}: IPagination): ReactElement {
   const pageNumbers = []
 
   for (let i = 1; i <= totalPages; i++) {

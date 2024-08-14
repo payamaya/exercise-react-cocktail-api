@@ -1,9 +1,6 @@
-export interface PaginationProps {
-  currentPage: number
-  totalPages: number
-  onPageChange: (pageNumber: number) => void
-}
+import { ChangeEventHandler } from 'react'
 
+// interfaces.ts
 export interface Drink {
   idDrink: string
   strDrink: string
@@ -14,4 +11,21 @@ export interface Drink {
   strTags: string | null
   [key: `strIngredient${number}`]: string | undefined
   [key: `strMeasure${number}`]: string | undefined
+}
+
+export interface IInput {
+  label?: string
+  placeholder?: string
+  type: 'text' | 'search'
+  onChange: ChangeEventHandler<HTMLInputElement | HTMLTextAreaElement>
+  value?: string
+  name?: string
+  id?: string
+  checked?: boolean
+  className?: string
+}
+export interface IPagination {
+  currentPage: number
+  totalPages: number
+  onPageChange: (pageNumber: number) => void
 }

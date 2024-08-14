@@ -18,31 +18,39 @@
   max-width: 500px;
 }
 .back {
-  margin-block: 1rem;
+  margin-block: 0.4rem;
+  width: 50%;
 }
 .ingredient-item {
   display: flex;
-  align-items: center;
+  align-items: baseline;
   padding: 1rem;
   width: 100%;
   flex-wrap: wrap;
   flex-direction: row;
-  justify-content: center;
+  justify-content: space-evenly;
 }
 .info-list {
+  margin: 0.5rem;
   width: 100px;
+}
+.ingredient-image {
+  filter: drop-shadow(0px 0px 4px var(--textColor));
+  margin-bottom: 0.2rem;
 }
 .measure {
   display: flex;
   align-items: center;
   flex-wrap: wrap;
   justify-content: space-around;
-  margin-block: 1rem;
-  border: 2px solid var(--iconColor);
+  margin-top: 1rem;
+  border-bottom: 2px solid var(--iconColor);
+  color: var(--textColor);
   width: 100%;
 }
 .measure span {
   margin-top: 1.5rem;
+  color: inherit;
 }
 
 .drink-details {
@@ -57,6 +65,7 @@
   width: 100%;
 }
 .info-figure {
+  width: 100%;
   display: flex;
   flex-direction: column;
   font-size: 1.5rem;
@@ -88,10 +97,14 @@
   color: var(--textColor);
   width: 30%;
 }
-
+/* NOTE css to be checked later */
 .info-table td {
   background-color: var(--bgColor);
   color: var(--textColor);
+  text-wrap: pretty;
+  word-wrap: break-word;
+  word-break: normal;
+  width: 100%;
 }
 
 @media (max-width: 768px) {

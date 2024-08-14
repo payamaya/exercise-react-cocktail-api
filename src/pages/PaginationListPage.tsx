@@ -1,43 +1,40 @@
-import { useState } from 'react'
+// PaginationListPage.tsx
 import { Pagination } from '../components/Pagination'
 import { useNavigate } from 'react-router-dom'
-
-// Define the TypeScript interface for the drink data
-interface Drink {
-  idDrink: string
-  strDrink: string
-  strInstructions: string
-  strDrinkThumb: string
-}
+import { Drink } from '../interfaces'
 
 interface Props {
   drinks: Drink[]
+  currentPage: number
+  setCurrentPage: (page: number) => void
 }
-export function PaginationList({ drinks }: Props) {
-  const navigate = useNavigate()
 
-  const [currentPage, setCurrentPage] = useState<number>(1)
+export function PaginationListPage({
+  drinks,
+  currentPage,
+  setCurrentPage,
+}: Props) {
+  const navigate = useNavigate()
   const itemsPerPage = 10
 
-  //Calculate the indices of the current page
+  // Calculate the indices of the current page
   const indexOfLastItem = currentPage * itemsPerPage
   const indexOfFirstItem = indexOfLastItem - itemsPerPage
   const currentItems = drinks.slice(indexOfFirstItem, indexOfLastItem)
 
-  //Calculate the total number of page
-  const totalPages =
-    drinks.length > 0 ? Math.ceil(drinks.length / itemsPerPage) : 1
-  if (!drinks || drinks.length === 0) {
-    return <p>No drinks found.</p>
-  }
-  //Handle page change
+  // Calculate the total number of pages
+  const totalPages = Math.ceil(drinks.length / itemsPerPage)
+
+  // Handle page change
   const handlePageChange = (pageNumber: number) => {
     setCurrentPage(pageNumber)
   }
+
   // Handle See More Info
   const handleSeeMore = (idDrink: string) => {
     navigate(`/cocktail-info/${idDrink}`)
   }
+
   return (
     <>
       <section className='search-result-container'>
@@ -54,11 +51,13 @@ export function PaginationList({ drinks }: Props) {
           ))}
         </ul>
       </section>
-      <Pagination
-        currentPage={currentPage}
-        totalPages={totalPages}
-        onPageChange={handlePageChange}
-      />
+      {totalPages > 1 && (
+        <Pagination
+          currentPage={currentPage}
+          totalPages={totalPages}
+          onPageChange={handlePageChange}
+        />
+      )}
     </>
   )
 }

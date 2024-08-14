@@ -3,19 +3,6 @@ import { useNavigate, useParams } from 'react-router-dom'
 import { Button } from '../components'
 import { Drink } from '../interfaces'
 
-// Define the TypeScript interface for the drink data
-// interface Drink {
-//   idDrink: string
-//   strDrink: string
-//   strInstructions: string
-//   strDrinkThumb: string
-//   strGlass: string
-//   strCategory: string
-//   strTags: null
-//   strIngredient1: string
-//   // Add other properties if needed
-// }
-
 interface ApiResponse {
   drinks: Drink[]
 }
@@ -27,12 +14,12 @@ export function CocktailInfoPage(): ReactElement {
 
   const navigate = useNavigate()
 
-  const lookUpApiUrl = `https://www.thecocktaildb.com/api/json/v1/1/lookup.php?i=${id}`
-
+  // const lookUpApiUrl = `https://www.thecocktaildb.com/api/json/v1/1/lookup.php?i=${id}`
+  const baseUrl = import.meta.env.VITE_BASE_URL as string
   useEffect(() => {
     const fetchDrinkById = async () => {
       try {
-        const response = await fetch(lookUpApiUrl)
+        const response = await fetch(`${baseUrl}lookup.php?i=${id}`)
         if (!response.ok) {
           throw new Error('Cannot fetch data from the API by ID')
         }
@@ -48,7 +35,7 @@ export function CocktailInfoPage(): ReactElement {
     }
 
     fetchDrinkById() // Fetch the drink details when the component mounts
-  }, [id, lookUpApiUrl]) // Dependency array ensures this runs when the id changes
+  }, [id, baseUrl]) // Dependency array ensures this runs when the id changes
 
   const renderIngredients = () => {
     if (!drink) return null
@@ -113,6 +100,10 @@ export function CocktailInfoPage(): ReactElement {
                     <th>Category:</th>
                     <td>{drink.strCategory}</td>
                   </tr>
+                  <tr>
+                    <th>Glass:</th>
+                    <td>{drink.strGlass}</td>
+                  </tr>
                 </tbody>
               </table>
               {/* <img src={drink.strDrinkThumb} alt={drink.strDrink} /> */}
@@ -122,9 +113,11 @@ export function CocktailInfoPage(): ReactElement {
               <span>Ingredients and Measurements</span>
               <ul className='ingredient-item'>{renderIngredients()}</ul>
             </div>
-            <span>Glass</span>
-            <p>{drink.strGlass}</p>
-            <Button title='hello' className='back' onClick={() => navigate(-1)}>
+            {/* <div className='info-glass'>
+              <span>Glass:</span>
+              <p>{drink.strGlass}</p>
+            </div> */}
+            <Button className='back' onClick={() => navigate(-1)}>
               Back
             </Button>
           </div>

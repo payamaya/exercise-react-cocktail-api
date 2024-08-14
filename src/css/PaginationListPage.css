@@ -5,6 +5,7 @@
   align-items: center;
   flex-direction: column;
   flex-wrap: wrap;
+  max-width: 768px;
 }
 .search-result-card {
   cursor: pointer;
@@ -12,7 +13,7 @@
   align-items: center;
   justify-content: center;
   width: 200px;
-  height: 65px;
+  height: 100px;
   border: 2px solid rgb(128, 94, 0);
   border-radius: var(--borderRadius);
   padding: 0.4rem 6rem;

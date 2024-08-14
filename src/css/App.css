@@ -4,9 +4,9 @@
   flex-direction: column;
   width: 100vw;
   justify-content: center;
-  margin-top: 25vh;
+  margin-top: 11vh;
 }
-@media screen and (max-width: 425px) {
+/* @media screen and (max-width: 425px) {
   .main {
     margin-top: 30vh;
   }
@@ -15,4 +15,4 @@
   .main {
     margin-top: 40vh;
   }
-}
+} */
