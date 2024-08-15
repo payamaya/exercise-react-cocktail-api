@@ -27,6 +27,11 @@
   cursor: pointer;
   transition: border-color 0.25s;
 }
+.search-input:hover {
+  background-color: var(--hoverColor);
+  border: 2px solid var(--borderColor);
+  box-shadow: var(--boxShadow);
+}
 
 .search-result-back {
   border-radius: var(--borderRadius);

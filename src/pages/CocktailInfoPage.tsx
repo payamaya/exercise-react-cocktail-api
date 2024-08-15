@@ -2,6 +2,7 @@ import { ReactElement, useEffect, useState } from 'react'
 import { useNavigate, useParams } from 'react-router-dom'
 import { Button } from '../components'
 import { Drink } from '../interfaces'
+import { fetchData } from '../utils/fetchData'
 
 interface ApiResponse {
   drinks: Drink[]
@@ -14,28 +15,25 @@ export function CocktailInfoPage(): ReactElement {
 
   const navigate = useNavigate()
 
-  // const lookUpApiUrl = `https://www.thecocktaildb.com/api/json/v1/1/lookup.php?i=${id}`
-  const baseUrl = import.meta.env.VITE_BASE_URL as string
   useEffect(() => {
-    const fetchDrinkById = async () => {
-      try {
-        const response = await fetch(`${baseUrl}lookup.php?i=${id}`)
-        if (!response.ok) {
-          throw new Error('Cannot fetch data from the API by ID')
-        }
-        const data: ApiResponse = await response.json()
-        setDrink(data.drinks[0]) // Set the drink data
-      } catch (error: unknown) {
-        if (error instanceof Error) {
-          setError(error.message)
-        } else {
-          setError('An unknown error occurred')
+    if (!drink) {
+      const fetchDrinkById = async () => {
+        try {
+          // Fetch random drink using dynamic fetch function
+          const data = await fetchData<ApiResponse>(`lookup.php?i=${id}`)
+          setDrink(data.drinks[0]) // Update context with fetched drink data
+        } catch (error: unknown) {
+          if (error instanceof Error) {
+            setError(error.message)
+          } else {
+            setError('An unknown error occurred')
+          }
         }
       }
-    }
 
-    fetchDrinkById() // Fetch the drink details when the component mounts
-  }, [id, baseUrl]) // Dependency array ensures this runs when the id changes
+      fetchDrinkById() // Fetch data only if there's no drink in context
+    }
+  }, [id, drink])
 
   const renderIngredients = () => {
     if (!drink) return null

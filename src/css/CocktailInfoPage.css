@@ -20,6 +20,10 @@
 .back {
   margin-block: 0.4rem;
   width: 50%;
+  border-radius: var(--borderRadius);
+  border: 2px solid var(--borderColor);
+  margin-left: 1rem;
+  padding: 0.4rem;
 }
 .ingredient-item {
   display: flex;

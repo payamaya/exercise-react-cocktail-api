@@ -1,20 +1,22 @@
 .btn {
-  border-radius: 8px;
-  border: 1px solid transparent;
-  padding: 0.6em 1.2em;
+  /* border-radius: 8px; */
+  /* border: 1px solid transparent; */
+  padding: 0.6rem 1.2rem;
   font-size: 1rem;
   font-weight: 500;
   font-family: inherit;
   background-color: var(--iconColor);
   cursor: pointer;
+  color: var(--textColor);
   transition: border-color 0.25s;
 }
 .btn:hover {
   background-color: var(--hoverColor);
-  border: 1px solid var(--borderColor);
+  border: 2px solid var(--borderColor);
   box-shadow: var(--boxShadow);
 }
 .btn:focus,
 .btn:focus-visible {
-  outline: 4px auto -webkit-focus-ring-color;
+  /* outline: 4px auto -webkit-focus-ring-color; */
+  outline: 4px auto var(--iconColor);
 }

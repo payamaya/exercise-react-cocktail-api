@@ -1,0 +1,22 @@
+{
+  "name": "The CocktailDB",
+  "short_name": "CocktailDB",
+  "description": "An app to explore various cocktails",
+  "start_url": "/",
+  "display": "standalone",
+  "background_color": "#ffffff",
+  "theme_color": "rgb(115, 95, 30)",
+  "orientation": "portrait",
+  "icons": [
+    {
+      "src": "/logo192.png",
+      "sizes": "192x192",
+      "type": "logo/png"
+    },
+    {
+      "src": "/logo512.png",
+      "sizes": "512x512",
+      "type": "logo/png"
+    }
+  ]
+}

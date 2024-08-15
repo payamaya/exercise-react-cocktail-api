@@ -1,5 +1,6 @@
 import { ReactElement } from 'react'
 import { IPagination } from '../interfaces'
+import { Button } from './Button'
 
 export function Pagination({
   currentPage,
@@ -17,7 +18,7 @@ export function Pagination({
       <ul className='pagination'>
         {pageNumbers.map((number) => (
           <li key={number} className={number === currentPage ? 'active' : ''}>
-            <button onClick={() => onPageChange(number)}>{number}</button>
+            <Button onClick={() => onPageChange(number)}>{number}</Button>
           </li>
         ))}
       </ul>

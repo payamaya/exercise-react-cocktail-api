@@ -3,6 +3,7 @@ import { Button } from '../components'
 import { useNavigate } from 'react-router-dom'
 import { Drink } from '../interfaces'
 import { useDrink } from '../contexts/DrinkContext'
+import { fetchData } from '../utils/fetchData'
 
 // Define the TypeScript interfaces based on the API response structure
 interface ApiResponse {
@@ -14,30 +15,25 @@ export function LandingPage(): ReactElement {
   const [error, setError] = useState<string | null>(null) // State to hold any errors
   const navigate = useNavigate()
 
-  const baseUrl = import.meta.env.VITE_BASE_URL as string
-
-  const fetchDrinks = async () => {
-    try {
-      const response = await fetch(`${baseUrl}random.php`)
-      if (!response.ok) {
-        throw new Error('Network response was not ok')
-      }
-      const data: ApiResponse = await response.json()
-      setDrink(data.drinks[0]) // Update context with fetched drink data
-    } catch (error: unknown) {
-      if (error instanceof Error) {
-        setError(error.message)
-      } else {
-        setError('An unknown error occurred')
-      }
-    }
-  }
-
   useEffect(() => {
     if (!drink) {
+      const fetchDrinks = async () => {
+        try {
+          // Fetch random drink using dynamic fetch function
+          const data = await fetchData<ApiResponse>('random.php')
+          setDrink(data.drinks[0]) // Update context with fetched drink data
+        } catch (error: unknown) {
+          if (error instanceof Error) {
+            setError(error.message)
+          } else {
+            setError('An unknown error occurred')
+          }
+        }
+      }
+
       fetchDrinks() // Fetch data only if there's no drink in context
     }
-  }, [drink, baseUrl]) // Only fetch data if drink is not set
+  }, [drink, setDrink])
 
   const handleSeeMore = (idDrink: string) => {
     navigate(`/cocktail-info/${idDrink}`)
@@ -68,7 +64,11 @@ export function LandingPage(): ReactElement {
           </Button>
         </section>
       )}
-      <Button type='button' className='random-btn' onClick={fetchDrinks}>
+      <Button
+        type='button'
+        className='random-btn'
+        onClick={() => setDrink(null)}
+      >
         Random Drink
       </Button>
     </>
