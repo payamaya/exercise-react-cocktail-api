@@ -1,49 +1,36 @@
-import { ReactElement, useEffect, useState } from 'react'
+import { ReactElement, useEffect } from 'react'
 import { Button } from '../components'
 import { useNavigate } from 'react-router-dom'
-import { Drink } from '../interfaces'
+import { useFetchDrinks } from '../hooks/useFetchDrinks'
 import { useDrink } from '../contexts/DrinkContext'
-import { fetchData } from '../utils/fetchData'
-
-// Define the TypeScript interfaces based on the API response structure
-interface ApiResponse {
-  drinks: Drink[]
-}
 
 export function LandingPage(): ReactElement {
   const { drink, setDrink } = useDrink() // Get drink and setDrink from context
-  const [error, setError] = useState<string | null>(null) // State to hold any errors
+
   const navigate = useNavigate()
 
+  const { data: drinks, error, loading, refetch } = useFetchDrinks(`random.php`)
   useEffect(() => {
-    if (!drink) {
-      const fetchDrinks = async () => {
-        try {
-          // Fetch random drink using dynamic fetch function
-          const data = await fetchData<ApiResponse>('random.php')
-          setDrink(data.drinks[0]) // Update context with fetched drink data
-        } catch (error: unknown) {
-          if (error instanceof Error) {
-            setError(error.message)
-          } else {
-            setError('An unknown error occurred')
-          }
-        }
-      }
-
-      fetchDrinks() // Fetch data only if there's no drink in context
-    }
-  }, [drink, setDrink])
-
+    if (!drink) setDrink(drinks[0])
+  }, [drink, drinks, setDrink])
   const handleSeeMore = (idDrink: string) => {
     navigate(`/cocktail-info/${idDrink}`)
   }
-
+  const handleRandomClick = () => {
+    refetch()
+    setDrink(null)
+  }
+  useEffect(() => {
+    if (drinks.length > 0) {
+      setDrink(drinks[0]) // Set the newly fetched random drink
+    }
+  }, [drinks, setDrink])
   return (
     <>
       <section>
         <h1>Welcome to TheCocktailDB</h1>
       </section>
+      {loading && <p>Loading...</p>}
       {error && <p>Error: {error}</p>} {/* Display error if any */}
       {drink && (
         <section className='drink-container'>
@@ -66,7 +53,7 @@ export function LandingPage(): ReactElement {
             <Button
               type='button'
               className='random-btn'
-              onClick={() => setDrink(null)}
+              onClick={handleRandomClick}
             >
               Random Drink
             </Button>

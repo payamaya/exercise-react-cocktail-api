@@ -111,7 +111,7 @@
   color: var(--textColor);
   text-wrap: pretty;
   word-wrap: break-word;
-  word-break: normal;
+  word-break: break-word;
   width: 100%;
 }
 .ingredient-wrapper {

@@ -1,36 +1,23 @@
-// PaginationListPage.tsx
 import { Pagination } from '../components/Pagination'
 import { useNavigate } from 'react-router-dom'
 import { Drink } from '../interfaces'
+import { ReactElement } from 'react'
 
 interface Props {
   drinks: Drink[]
   currentPage: number
-  setCurrentPage: (page: number) => void
+  totalPages: number
+  handlePageChange: (pageNumber: number) => void
 }
 
 export function PaginationListPage({
   drinks,
   currentPage,
-  setCurrentPage,
-}: Props) {
+  totalPages,
+  handlePageChange,
+}: Props): ReactElement {
   const navigate = useNavigate()
-  const itemsPerPage = 10
 
-  // Calculate the indices of the current page
-  const indexOfLastItem = currentPage * itemsPerPage
-  const indexOfFirstItem = indexOfLastItem - itemsPerPage
-  const currentItems = drinks.slice(indexOfFirstItem, indexOfLastItem)
-
-  // Calculate the total number of pages
-  const totalPages = Math.ceil(drinks.length / itemsPerPage)
-
-  // Handle page change
-  const handlePageChange = (pageNumber: number) => {
-    setCurrentPage(pageNumber)
-  }
-
-  // Handle See More Info
   const handleSeeMore = (idDrink: string) => {
     navigate(`/cocktail-info/${idDrink}`)
   }
@@ -40,7 +27,7 @@ export function PaginationListPage({
       <section className='search-result-container'>
         <h1 className='pagination-list-header'>Cocktail List</h1>
         <ul className='search-result-wrapper'>
-          {currentItems.map((drink) => (
+          {drinks.map((drink) => (
             <li
               className='search-result-card'
               key={drink.idDrink}

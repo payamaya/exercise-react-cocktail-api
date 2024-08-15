@@ -50,7 +50,6 @@ export function CocktailInfoPage(): ReactElement {
         )
       }
     })
-
     return ingredients
   }
 
