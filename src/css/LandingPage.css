@@ -24,11 +24,23 @@
 .random-drink_card {
   margin-block: 1rem;
 }
-
-.btn-submit {
+.landing-btn-section {
+  display: flex;
+  justify-content: space-around;
   margin-block: 1rem;
+  width: 100%;
+}
+.btn-submit {
+  border-radius: var(--borderRadius);
+  border: 2px solid var(--borderColor);
+  padding: 0.4rem;
+  /* margin-block: 1rem; */
   font-size: 1rem;
+  /* width: 100%; */
 }
 .random-btn {
-  margin-bottom: 1rem;
+  border-radius: var(--borderRadius);
+  border: 2px solid var(--borderColor);
+  padding: 0.4rem;
+  /* margin-bottom: 1rem; */
 }

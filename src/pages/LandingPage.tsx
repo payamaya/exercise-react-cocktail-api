@@ -55,22 +55,24 @@ export function LandingPage(): ReactElement {
             />
             <figcaption className='figcaption'>{drink.strDrink}</figcaption>
           </figure>
-          <Button
-            type='submit'
-            className='btn-submit'
-            onClick={() => handleSeeMore(drink.idDrink)}
-          >
-            See More
-          </Button>
+          <section className='landing-btn-section'>
+            <Button
+              type='submit'
+              className='btn-submit'
+              onClick={() => handleSeeMore(drink.idDrink)}
+            >
+              See More
+            </Button>
+            <Button
+              type='button'
+              className='random-btn'
+              onClick={() => setDrink(null)}
+            >
+              Random Drink
+            </Button>
+          </section>
         </section>
       )}
-      <Button
-        type='button'
-        className='random-btn'
-        onClick={() => setDrink(null)}
-      >
-        Random Drink
-      </Button>
     </>
   )
 }
