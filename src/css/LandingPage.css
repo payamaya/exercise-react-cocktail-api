@@ -44,3 +44,21 @@
   padding: 0.4rem;
   /* margin-bottom: 1rem; */
 }
+/* .drink-wrapper {
+  width: 100%;
+} */
+.drink-wrapper ul {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-evenly;
+  /* border: 2px solid red; */
+  margin: 1rem;
+}
+.ingredient-back {
+  margin-block: 0.4rem;
+  width: fit-content;
+  border-radius: var(--borderRadius);
+  border: 2px solid var(--borderColor);
+  margin-left: 1rem;
+  padding: 0.4rem 1.4rem;
+}

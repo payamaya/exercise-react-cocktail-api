@@ -1,11 +1,12 @@
 .info-card-container {
   display: flex;
-  flex-direction: row-reverse;
+  flex-direction: row;
   /* padding: 1rem; */
   border: var(--border);
   border-radius: var(--borderRadius);
   margin: 2rem 1rem;
   justify-content: center;
+  flex-wrap: wrap;
 }
 
 .drink-details-img {
@@ -25,6 +26,7 @@
   margin-left: 1rem;
   padding: 0.4rem;
 }
+
 .ingredient-item {
   display: flex;
   align-items: baseline;
@@ -35,6 +37,7 @@
   justify-content: space-evenly;
 }
 .info-list {
+  cursor: pointer;
   margin: 0.5rem;
   width: 100px;
 }
@@ -73,6 +76,7 @@
   display: flex;
   flex-direction: column;
   font-size: 1.5rem;
+  cursor: pointer;
 }
 .figcaption {
   margin-top: 1rem;
@@ -110,7 +114,14 @@
   word-break: normal;
   width: 100%;
 }
-
+.ingredient-wrapper {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-evenly;
+}
+/* .drink-container {
+  width: 200px;
+} */
 @media (max-width: 768px) {
   .drink-info {
     width: 100%;

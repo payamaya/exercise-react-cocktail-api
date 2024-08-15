@@ -2,6 +2,7 @@ import { ButtonHTMLAttributes, ReactNode } from 'react'
 
 // interfaces.ts
 export interface Drink {
+  startsWith(arg0: string): unknown
   idDrink: string
   strDrink: string
   strInstructions: string
