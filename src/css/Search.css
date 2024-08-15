@@ -26,6 +26,7 @@
   background-color: var(--iconColor);
   cursor: pointer;
   transition: border-color 0.25s;
+  width: 50%;
 }
 .search-input:hover {
   background-color: var(--hoverColor);
