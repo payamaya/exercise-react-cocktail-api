@@ -1,4 +1,4 @@
-import { ChangeEventHandler } from 'react'
+import { ButtonHTMLAttributes, ReactNode } from 'react'
 
 // interfaces.ts
 export interface Drink {
@@ -13,16 +13,8 @@ export interface Drink {
   [key: `strMeasure${number}`]: string | undefined
 }
 
-export interface IInput {
-  label?: string
-  placeholder?: string
-  type: 'text' | 'search'
-  onChange: ChangeEventHandler<HTMLInputElement | HTMLTextAreaElement>
-  value?: string
-  name?: string
-  id?: string
-  checked?: boolean
-  className?: string
+export interface IInput extends ButtonHTMLAttributes<HTMLButtonElement> {
+  children: ReactNode
 }
 export interface IPagination {
   currentPage: number

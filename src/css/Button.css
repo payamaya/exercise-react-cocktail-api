@@ -9,6 +9,8 @@
   cursor: pointer;
   color: var(--textColor);
   transition: border-color 0.25s;
+  width: fit-content;
+  margin: 0.2rem;
 }
 .btn:hover {
   background-color: var(--hoverColor);

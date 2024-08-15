@@ -1,3 +1,5 @@
 .input {
   color: var(--textColor);
+  /* background-color: var(--iconColor); */
+  margin: 0.2rem;
 }

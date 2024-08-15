@@ -1,9 +1,14 @@
-import { ReactElement } from 'react'
-import { IInput } from '../interfaces'
-// interface IInputProps extends IInput {
-//   className: string
-// }
-export function Input({ label, className, ...input }: IInput): ReactElement {
+import { ReactElement, InputHTMLAttributes } from 'react'
+
+export interface IInput extends InputHTMLAttributes<HTMLInputElement> {
+  label?: string // Optional label for accessibility
+}
+
+export function Input({
+  label,
+  className = '',
+  ...input
+}: IInput): ReactElement {
   return (
     <input
       className={`input ${className}`}

@@ -127,7 +127,7 @@
     margin: 1rem;
     display: flex;
     flex-direction: column;
-    width: 100%;
+    /* width: 100%; */
   }
   .drink-details-img {
     max-height: 280px;

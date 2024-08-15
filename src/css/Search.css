@@ -2,12 +2,9 @@
   display: flex;
   justify-content: space-around;
   margin-block: 1rem;
-  /* position: fixed; */
-  /* top: 12vh; */
-  min-width: 100%;
-  /* margin-bottom: 1rem; */
+  width: 100%;
   flex-wrap: wrap;
-  /* background-color: red; */
+  color: var(--textColor);
 }
 
 .search-btn {
@@ -15,18 +12,22 @@
   border: 2px solid var(--borderColor);
   padding: 0.4rem;
   margin-left: 1rem;
+  padding: 0.4rem 0.8rem;
 }
 
 .search-input {
+  background-color: none;
   border-radius: var(--borderRadius);
   border: 2px solid var(--borderColor);
   padding: 0.5rem;
   font-weight: 500;
   font-family: inherit;
   background-color: var(--iconColor);
+
+  /* background-color: var(--iconColor); */
   cursor: pointer;
   transition: border-color 0.25s;
-  width: 50%;
+  /* width: 50%; */
 }
 .search-input:hover {
   background-color: var(--hoverColor);
@@ -37,8 +38,9 @@
 .search-result-back {
   border-radius: var(--borderRadius);
   border: 2px solid var(--borderColor);
-  padding: 0.4rem;
+  padding: 0.4rem 0.8rem;
   /* margin: auto; */
+  /* width: 10vw; */
 }
 .search-para {
   display: flex;
@@ -47,19 +49,42 @@
   align-items: center;
   height: 60vh;
 }
-@media screen and (max-width: 345px) {
+@media screen and (max-width: 450px) {
   .form {
-    /* background-color: red; */
-    width: max-content;
+    display: flex;
+    justify-content: space-around;
+    flex-direction: row;
+    /* border: 2px solid red; */
   }
-  .search-result-back {
-    order: 2;
-    width: 92%;
-    margin-block: 0.5rem;
+  .search-input {
+    width: 100%;
   }
   .search-input-wrapper {
     display: flex;
     width: 100%;
+    justify-content: space-between;
+    /* margin-inline: 1rem; */
+    order: 2;
+  }
+  .search-result-back {
+    display: flex;
     justify-content: space-around;
+    width: 100%;
+    /* margin-inline: 1rem; */
+  }
+}
+@media screen and (max-width: 294px) {
+  .form {
+    display: flex;
+    flex-wrap: wrap;
+  }
+  .search-btn {
+    border-radius: var(--borderRadius);
+    border: 2px solid var(--borderColor);
+    /* padding: 0rem; */
+    margin-left: 0rem;
+  }
+  .search-input {
+    width: 50%;
   }
 }

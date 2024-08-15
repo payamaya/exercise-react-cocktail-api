@@ -29,7 +29,7 @@ export function Search(): ReactElement {
       </Button>
       <section className='search-input-wrapper'>
         <Input
-          className='search-input'
+          className='search-input search'
           label='search'
           placeholder='search...'
           type='search'
