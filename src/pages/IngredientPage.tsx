@@ -29,7 +29,7 @@ export function IngredientPage(): ReactElement {
       {error && <p>Error: {error}</p>}
       {drinks.length > 0 && (
         <>
-          <section className='drink-wrapper'>
+          <section className='drink-wrapper '>
             <ul>
               {currentItems.map((drink) => (
                 <li

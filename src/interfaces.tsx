@@ -13,6 +13,9 @@ export interface Drink {
   [key: `strIngredient${number}`]: string | undefined
   [key: `strMeasure${number}`]: string | undefined
 }
+export interface Category {
+  strCategory: string
+}
 
 export interface IInput extends ButtonHTMLAttributes<HTMLButtonElement> {
   children: ReactNode

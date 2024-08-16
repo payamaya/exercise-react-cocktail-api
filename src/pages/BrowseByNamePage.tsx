@@ -1,41 +1,45 @@
 import { ReactElement, useEffect, useState } from 'react'
 import { Button } from '../components'
-import { useNavigate } from 'react-router-dom'
+import { useNavigate, useSearchParams } from 'react-router-dom'
 import { useFetchDrinks } from '../hooks/useFetchDrinks'
 import { Drink } from '../interfaces'
 import BrowserByName from '../components/BrowserByName'
-// import { useDrink } from '../contexts/DrinkContext'
 
-export function LandingPage(): ReactElement {
-  // const { drink, setDrink } = useDrink() // Get drink and setDrink from context
-  const [drink, setDrink] = useState<Drink | null>(null) // Use local state for drink
+export function BrowseByNamePage(): ReactElement {
+  const [searchParams] = useSearchParams()
+  const query = searchParams.get('query') || ''
+  const [drink, setDrink] = useState<Drink | null>(null)
   const navigate = useNavigate()
 
-  const { data: drinks, error, loading, refetch } = useFetchDrinks(`random.php`)
+  const {
+    data: drinks,
+    error,
+    loading,
+    refetch,
+  } = useFetchDrinks(query ? `/search.php?f=${query}` : null)
 
   useEffect(() => {
-    if (!drink) setDrink(drinks[0])
-  }, [drink, drinks, setDrink])
+    if (drinks && drinks.length > 0) {
+      setDrink(drinks[0])
+    }
+  }, [drinks])
 
   const handleSeeMore = (idDrink: string) => {
     navigate(`/cocktail-info/${idDrink}`)
   }
+
   const handleRandomClick = () => {
     refetch()
     setDrink(null)
   }
-  useEffect(() => {
-    if (drinks.length > 0) {
-      setDrink(drinks[0]) // Set the newly fetched random drink
-    }
-  }, [drinks, setDrink])
+
   return (
     <>
       <section>
-        <h1>Welcome to TheCocktailDB</h1>
+        <h1>Search By First Letter Page</h1>
       </section>
       {loading && <p>Loading...</p>}
-      {error && <p>Error: {error}</p>} {/* Display error if any */}
+      {error && <p>Error: {error}</p>}
       {drink && (
         <section className='drink-container'>
           <figure className='info-figure'>

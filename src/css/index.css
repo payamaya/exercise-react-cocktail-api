@@ -2,6 +2,7 @@
 
 @import url('./App.css');
 @import url('./Button.css');
+@import url('./BrowseByNamePage.css');
 @import url('./Header.css');
 @import url('./CocktailInfoPage.css');
 @import url('./Input.css');
@@ -71,7 +72,11 @@ h1 {
   font-size: 2.6rem;
   line-height: 1.1;
 }
-
+.skeleton {
+  background-color: red;
+  font-size: 3rem;
+  border: 4px solid green;
+}
 /* button:hover {
   border-color: var(--borderColor);
 }

@@ -1,0 +1,21 @@
+.drinks-list {
+  font-size: 1rem;
+}
+.alphabet-list {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  max-width: 650px;
+  margin: 1rem;
+  padding: 0.4rem;
+}
+
+.alphabet-btn {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 30px;
+  height: 30px;
+  border: 2px solid var(--borderColor);
+  color: var(--textColor);
+}

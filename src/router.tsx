@@ -9,8 +9,8 @@ import {
   LandingPage,
   SearchPage,
   IngredientPage,
+  BrowseByNamePage,
 } from './pages'
-import {} from './pages/IngredientPage'
 
 export const router = createBrowserRouter(
   createRoutesFromElements(
@@ -18,6 +18,7 @@ export const router = createBrowserRouter(
       <Route index element={<LandingPage />} />
       <Route path='/cocktail-info/:id' element={<CocktailInfoPage />} />
       <Route path='/ingredient/:ingredient' element={<IngredientPage />} />
+      <Route path='/browse/letter/:letter' element={<BrowseByNamePage />} />
       <Route path='/search-page' element={<SearchPage />} />
     </Route>
   )
