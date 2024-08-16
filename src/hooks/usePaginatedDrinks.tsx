@@ -1,13 +1,18 @@
 import { useMemo, useState } from 'react'
-import { Drink } from '../interfaces'
+import { useFetchDrinks } from './useFetchDrinks'
 
-export default function usePaginatedDrinks(drinks: Drink[], itemsPerPage = 10) {
+export default function usePaginatedDrinks(
+  endpoint: string,
+  itemsPerPage = 10
+) {
+  const { data: drinks = [], error, loading } = useFetchDrinks(endpoint)
   const [currentPage, setCurrentPage] = useState(1)
 
   // Calculate total pages
-  const totalPages = useMemo(() => {
-    return Math.ceil(drinks.length / itemsPerPage)
-  }, [drinks, itemsPerPage])
+  const totalPages = useMemo(
+    () => Math.ceil(drinks.length / itemsPerPage),
+    [drinks.length, itemsPerPage]
+  )
 
   // Get current items based on pagination
   const currentItems = useMemo(() => {
@@ -18,13 +23,19 @@ export default function usePaginatedDrinks(drinks: Drink[], itemsPerPage = 10) {
 
   // Handle page change
   const handlePageChange = (pageNumber: number) => {
-    setCurrentPage(pageNumber)
+    if (pageNumber >= 1 && pageNumber <= totalPages) {
+      setCurrentPage(pageNumber)
+    }
   }
 
   return {
-    currentItems,
+    drinks,
+    error,
+    loading,
     currentPage,
-    totalPages,
+    setCurrentPage,
+    currentItems,
     handlePageChange,
+    totalPages,
   }
 }

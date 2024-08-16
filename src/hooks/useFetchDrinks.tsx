@@ -6,16 +6,20 @@ interface ApiResponse {
   drinks: Drink[]
 }
 
-export function useFetchDrinks(endpoint: string) {
+export function useFetchDrinks(endpoint: string | null) {
   const [data, setData] = useState<Drink[]>([])
   const [error, setError] = useState<string | null>(null)
-  const [loading, setLoading] = useState<boolean>(true)
+  const [loading, setLoading] = useState<boolean>(false)
 
   const fetchDrinks = useCallback(async () => {
+    if (!endpoint) {
+      setData([])
+      return
+    }
     setLoading(true)
     try {
       const response = await fetchData<ApiResponse>(endpoint)
-      setData(response.drinks)
+      setData(response.drinks || [])
     } catch (error: unknown) {
       if (error instanceof Error) {
         setError(error.message)

@@ -1,18 +1,21 @@
-import { ReactElement, useEffect } from 'react'
+import { ReactElement, useEffect, useState } from 'react'
 import { Button } from '../components'
 import { useNavigate } from 'react-router-dom'
 import { useFetchDrinks } from '../hooks/useFetchDrinks'
-import { useDrink } from '../contexts/DrinkContext'
+import { Drink } from '../interfaces'
+// import { useDrink } from '../contexts/DrinkContext'
 
 export function LandingPage(): ReactElement {
-  const { drink, setDrink } = useDrink() // Get drink and setDrink from context
-
+  // const { drink, setDrink } = useDrink() // Get drink and setDrink from context
+  const [drink, setDrink] = useState<Drink | null>(null) // Use local state for drink
   const navigate = useNavigate()
 
   const { data: drinks, error, loading, refetch } = useFetchDrinks(`random.php`)
+
   useEffect(() => {
     if (!drink) setDrink(drinks[0])
   }, [drink, drinks, setDrink])
+
   const handleSeeMore = (idDrink: string) => {
     navigate(`/cocktail-info/${idDrink}`)
   }

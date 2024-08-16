@@ -1,55 +1,35 @@
-import { ReactElement, useEffect, useState } from 'react'
+import { ReactElement, useEffect } from 'react'
 import { useSearchParams } from 'react-router-dom'
 import { Search } from '../components'
 import { PaginationListPage } from './PaginationListPage'
-import { Drink } from '../interfaces'
-import { fetchData } from '../utils/fetchData'
+import { useFetchDrinks } from '../hooks/useFetchDrinks'
 import usePaginatedDrinks from '../hooks/usePaginatedDrinks'
 
-interface ApiResponse {
-  drinks: Drink[] | null
-}
-
 export function SearchPage(): ReactElement {
-  const [drinks, setDrinks] = useState<Drink[]>([])
-  const [error, setError] = useState<string | null>(null)
   const [searchParams] = useSearchParams()
   const query = searchParams.get('query') || ''
 
+  const {
+    data: drinks,
+    error,
+    loading,
+    refetch,
+  } = useFetchDrinks(query ? `search.php?s=${query}` : null)
+
   useEffect(() => {
-    const fetchSearchDrinks = async () => {
-      if (!query) {
-        setDrinks([])
-        return
-      }
-
-      try {
-        const data = await fetchData<ApiResponse>(`search.php?s=${query}`)
-
-        if (data.drinks) {
-          setDrinks(data.drinks)
-        } else {
-          setDrinks([]) // Handle case where no drinks are found
-        }
-      } catch (error: unknown) {
-        if (error instanceof Error) {
-          setError(error.message)
-        } else {
-          setError('An unknown error occurred')
-        }
-      }
+    if (query) {
+      refetch()
     }
-
-    fetchSearchDrinks()
-  }, [query])
+  }, [query, refetch])
 
   const { currentItems, currentPage, totalPages, handlePageChange } =
-    usePaginatedDrinks(drinks, 10)
+    usePaginatedDrinks(query ? `search.php?s=${query}` : '', 10)
 
   return (
     <>
       <Search />
       {error && <p>Error: {error}</p>}
+      {loading && <p>Loading...</p>}
       {drinks.length > 0 ? (
         <PaginationListPage
           drinks={currentItems}
@@ -58,9 +38,11 @@ export function SearchPage(): ReactElement {
           handlePageChange={handlePageChange}
         />
       ) : (
-        <p className='search-para'>
-          Please enter a search query to find a cocktail.
-        </p>
+        !loading && (
+          <p className='search-para'>
+            Please enter a search query to find a cocktail.
+          </p>
+        )
       )}
     </>
   )

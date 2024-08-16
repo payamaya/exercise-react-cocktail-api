@@ -1,7 +1,6 @@
 import { ReactElement } from 'react'
-import { useParams } from 'react-router-dom'
+import { useParams, useNavigate } from 'react-router-dom'
 import { Button, Pagination } from '../components'
-import { useNavigate } from 'react-router-dom'
 import usePaginatedDrinks from '../hooks/usePaginatedDrinks'
 import { useFetchDrinks } from '../hooks/useFetchDrinks'
 
@@ -15,11 +14,12 @@ export function IngredientPage(): ReactElement {
   } = useFetchDrinks(`filter.php?i=${ingredient}`)
 
   const { currentItems, currentPage, totalPages, handlePageChange } =
-    usePaginatedDrinks(drinks, 10)
+    usePaginatedDrinks(`filter.php?i=${ingredient}`, 10)
 
   function handleSeeMore(idDrink: string): void {
     navigate(`/cocktail-info/${idDrink}`)
   }
+
   return (
     <>
       <section>
@@ -33,7 +33,7 @@ export function IngredientPage(): ReactElement {
             <ul>
               {currentItems.map((drink) => (
                 <li
-                  className='drink-container'
+                  className='drink-container view'
                   key={drink.idDrink}
                   onClick={() => handleSeeMore(drink.idDrink)}
                 >
