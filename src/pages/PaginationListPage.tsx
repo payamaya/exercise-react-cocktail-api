@@ -29,11 +29,18 @@ export function PaginationListPage({
         <ul className='search-result-wrapper'>
           {drinks.map((drink) => (
             <li
-              className='search-result-card'
+              className='drink-container view'
               key={drink.idDrink}
               onClick={() => handleSeeMore(drink.idDrink)}
             >
-              {drink.strDrink}
+              <figure className='info-figure'>
+                <img
+                  className='drink-details-img'
+                  src={drink.strDrinkThumb}
+                  alt={drink.strDrink}
+                />
+                <figcaption className='figcaption'>{drink.strDrink}</figcaption>
+              </figure>
             </li>
           ))}
         </ul>

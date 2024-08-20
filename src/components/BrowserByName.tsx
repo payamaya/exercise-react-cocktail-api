@@ -2,6 +2,8 @@ import { ReactElement, useEffect } from 'react'
 import { useNavigate, useParams, useSearchParams } from 'react-router-dom'
 import { useFetchDrinks } from '../hooks/useFetchDrinks'
 import { Button } from './Button'
+import { PaginationListPage } from '../pages'
+import usePaginatedDrinks from '../hooks/usePaginatedDrinks'
 
 export default function BrowserByName(): ReactElement {
   const { letter } = useParams<{ letter: string }>() // Get the letter from the URL
@@ -32,37 +34,24 @@ export default function BrowserByName(): ReactElement {
     navigate(`/browse/letter/${selectedLetter}`)
   }
 
-  const handleSeeMore = (idDrink: string) => {
-    navigate(`/cocktail-info/${idDrink}`)
-  }
-
+  // const handleSeeMore = (idDrink: string) => {
+  //   navigate(`/cocktail-info/${idDrink}`)
+  // }
+  const { currentItems, currentPage, totalPages, handlePageChange } =
+    usePaginatedDrinks(query ? `search.php?s=${query}` : '', 10)
   return (
     <>
       {loading && <p>Loading...</p>}
       {error && <p>Error: {error}</p>}
-      {drinks && (
-        <section className='drink-wrapper '>
-          <ul>
-            {drinks.map((drink) => (
-              <li
-                className='drink-container view'
-                key={drink.idDrink}
-                onClick={() => handleSeeMore(drink.idDrink)}
-              >
-                <figure className='info-figure'>
-                  <img
-                    className='drink-details-img'
-                    src={drink.strDrinkThumb}
-                    alt={drink.strDrink}
-                  />
-                  <figcaption className='figcaption'>
-                    {drink.strDrink}
-                  </figcaption>
-                </figure>
-              </li>
-            ))}
-          </ul>
-        </section>
+      {drinks.length > 0 ? (
+        <PaginationListPage
+          drinks={currentItems}
+          currentPage={currentPage}
+          totalPages={totalPages}
+          handlePageChange={handlePageChange}
+        />
+      ) : (
+        !loading && <p className='search-para'>No Data Found</p>
       )}
       <section>
         <h1>Browse By Name</h1>
