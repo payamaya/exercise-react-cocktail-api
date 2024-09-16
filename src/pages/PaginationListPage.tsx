@@ -25,7 +25,7 @@ export function PaginationListPage({
   return (
     <>
       <section className='search-result-container'>
-        <h1 className='pagination-list-header'>Cocktail List</h1>
+        {/* <h1 className='pagination-list-header'>Cocktail List</h1> */}
         <ul className='search-result-wrapper'>
           {drinks.map((drink) => (
             <li
